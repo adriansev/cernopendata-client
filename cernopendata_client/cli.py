@@ -472,6 +472,8 @@ def list_directory(path, recursive, timeout):
       $ cernopendata-client list-directory /eos/opendata/cms/Run2010B/BTau/AOD --recursive
       $ cernopendata-client list-directory /eos/opendata/cms/Run2010B --recursive --timeout 10
     """
+    if not path.startswith('/eos/opendata'): path = f'/eos/opendata/{path}'
+    path = os.path.normpath(path)
     validate_directory(directory=path)
     files = get_list_directory(path, recursive, timeout)
     if not files:

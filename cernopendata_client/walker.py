@@ -17,15 +17,14 @@ import datetime
 from .config import SERVER_ROOT_URI
 from .printer import display_message
 
+xrootd_available = True  # part of requirement, most probable present
 try:
     from XRootD import client as xrootdclient
     from XRootD.client.flags import DirListFlags
-
-    FS = xrootdclient.FileSystem(SERVER_ROOT_URI)
-    xrootd_available = True
 except ImportError:
     xrootd_available = False
 
+FS = xrootdclient.FileSystem(SERVER_ROOT_URI) if xrootd_available else None
 
 def get_list_directory(path, recursive, timeout, time_start=None):
     """Return list of contents of a EOSPUBLIC Open Data directory.

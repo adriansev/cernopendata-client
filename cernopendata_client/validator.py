@@ -121,10 +121,10 @@ def validate_directory(directory=None):
         if isinstance(directory, unicode):  # noqa F821
             directory = directory.encode("utf-8")
     if isinstance(directory, str):
-        if not directory.startswith("/eos/opendata/"):
+        if not directory.startswith("/eos/opendata"):
             display_message(
                 msg_type="error",
-                msg="Invalid value for directory. {} is not valid EOSPUBLIC path".format(
+                msg="Invalid value for directory. {} is not valid EOSPUBLIC path, it should start with /eos/opendata".format(
                     directory
                 ),
             )
